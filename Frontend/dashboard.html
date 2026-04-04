@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Athleon Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⬡</span>
+        <div>
+          <div class="brand-name">Athleon Global</div>
+          <div class="brand-tagline">Elite Performance</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="dashboard">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-page="videos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <span>My Videos</span>
+      </a>
+      <a href="#" class="nav-item" data-page="achievements">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2.34"/><path d="M18 4H6v7a6 6 0 0 0 12 0V4Z"/></svg>
+        <span>Achievements</span>
+      </a>
+      <a href="#" class="nav-item" data-page="my-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <span>My Content</span>
+      </a>
+      <a href="#" class="nav-item" data-page="find">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Find Athletes</span>
+      </a>
+      <div class="nav-item" data-page="analytics">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>AI Coach Chat</span>
+      </div>
+      <div class="nav-item" data-page="ai-lab">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>AI Video Lab</span>
+      </div>
+      <a href="#" class="nav-item" data-page="profile">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Profile Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">A</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-username">Athlete</div>
+          <div class="user-role">Pro Athlete</div>
+        </div>
+      </div>
+      <a href="index.html" class="logout-btn" title="Logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════ MAIN CONTENT ═══════════ -->
+  <main class="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button id="sidebar-toggle" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search athletes, posts, or matches..." class="search-input" id="search-input">
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="notif-btn" id="theme-toggle" title="Toggle Theme">
+          ☀️
+        </button>
+        <button class="notif-btn" id="notif-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge">3</span>
+        </button>
+        <div class="topbar-user">
+          <span class="topbar-role">Performance Architect</span>
+          <div class="topbar-avatar" id="topbar-avatar">A</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Views -->
+    <div class="page-view active" id="page-dashboard">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h1 class="welcome-title">Welcome back, <span id="welcome-name">Athlete</span>.</h1>
+          <p class="welcome-sub">Your performance metrics are up by <strong>14%</strong> this week. Keep maintaining the discipline.</p>
+        </div>
+        <div class="welcome-badge-wrap">
+          <span class="welcome-badge">🏆 Week Streak: 7</span>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-label">AI Credits Left</div>
+          <div class="stat-card-value">85 <span class="stat-delta positive">Free</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">My Videos</div>
+          <div class="stat-card-value">14 <span class="stat-delta positive">+2</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Total Achievements</div>
+          <div class="stat-card-value">6 <span class="stat-delta positive">+1</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Training Hours</div>
+          <div class="stat-card-value">124h <span class="stat-delta positive">12%</span></div>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="dashboard-grid">
+
+        <!-- Left Column -->
+        <div class="dashboard-left">
+
+          <!-- My Recent Videos -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">My Recent Videos</h2>
+              <a href="#" class="card-action" onclick="showPage('videos')">View library</a>
+            </div>
+            <div class="videos-grid-mini" id="recent-videos-list">
+              <!-- Rendered by JS -->
+              <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
+                Loading performance videos...
+              </div>
+            </div>
+          </div>
+
+          <!-- My Achievements -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">My Achievements</h2>
+              <a href="#" class="card-action">View trophy room</a>
+            </div>
+            <div class="achievements-list" id="dashboard-achievements-list">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column -->
+        <div class="dashboard-right">
+
+          <!-- Quick Actions -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Quick Actions</h2>
+            </div>
+            <div class="quick-actions">
+              <button class="qa-btn primary" id="qa-upload-video">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Upload Video
+              </button>
+              <button class="qa-btn" id="qa-ai-analysis">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                AI Deep Dive
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile Strength -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Profile Strength</h2>
+              <span class="profile-pct">85%</span>
+            </div>
+            <div class="profile-bar-track">
+              <div class="profile-bar-fill" style="width: 85%"></div>
+            </div>
+            <p class="profile-tip">Complete your <a href="#" class="profile-link">Contractual Terms</a> to reach 100%.</p>
+
+            <div class="profile-checklist">
+              <div class="checklist-item done">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Profile photo uploaded
+              </div>
+              <div class="checklist-item done">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                First video posted
+              </div>
+              <div class="checklist-item done">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Bio completed
+              </div>
+              <div class="checklist-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                Contractual terms
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance Summary -->
+          <div class="card perf-card">
+            <div class="card-header">
+              <h2 class="card-title">This Week</h2>
+            </div>
+            <div class="perf-bars">
+              <div class="perf-row">
+                <span class="perf-label">Speed</span>
+                <div class="perf-track"><div class="perf-fill" style="width:78%; background: #4da6ff;"></div></div>
+                <span class="perf-val">78</span>
+              </div>
+              <div class="perf-row">
+                <span class="perf-label">Endurance</span>
+                <div class="perf-track"><div class="perf-fill" style="width:65%; background: #a78bfa;"></div></div>
+                <span class="perf-val">65</span>
+              </div>
+              <div class="perf-row">
+                <span class="perf-label">Strength</span>
+                <div class="perf-track"><div class="perf-fill" style="width:82%; background: #4dffb4;"></div></div>
+                <span class="perf-val">82</span>
+              </div>
+              <div class="perf-row">
+                <span class="perf-label">Agility</span>
+                <div class="perf-track"><div class="perf-fill" style="width:71%; background: #ffb84d;"></div></div>
+                <span class="perf-val">71</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Post Page -->
+    <div class="page-view" id="page-create-post">
+      <div class="page-hero">
+        <h1>Create Post</h1>
+        <p>Share your training highlights, achievements, or match updates with the community.</p>
+      </div>
+      <div class="card post-form-card">
+        <form id="create-post-form">
+          <div class="form-group-d">
+            <label class="form-label-d">Post Title</label>
+            <input type="text" class="form-input-d" placeholder="e.g. Morning Training Regimen 04">
+          </div>
+          <div class="form-group-d">
+            <label class="form-label-d">Content</label>
+            <textarea class="form-input-d form-textarea-d" placeholder="Describe your training session, goals achieved, or insights..." rows="5"></textarea>
+          </div>
+          <div class="form-group-d">
+            <label class="form-label-d">Tags</label>
+            <input type="text" class="form-input-d" placeholder="e.g. training, football, speed">
+          </div>
+          <div class="form-row-d">
+            <button type="submit" class="dash-btn primary">Publish Post</button>
+            <button type="button" class="dash-btn outlined">Save Draft</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Videos Page -->
+    <div class="page-view" id="page-videos">
+      <div class="page-hero" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h1>My Performance Videos</h1>
+          <p>Your library of training and performance clips.</p>
+        </div>
+        <button class="dash-btn primary" id="lib-upload-btn" style="display:flex; align-items:center; gap:0.5rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload New Video
+        </button>
+      </div>
+
+      <div id="upload-zone" style="margin-bottom: 2rem; border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; background: rgba(255,255,255,0.02)">
+        <div style="font-size: 2rem; margin-bottom: 1rem;">📤</div>
+        <h3>Select a video to upload</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">MP4, MOV, or WebM (Max 500MB)</p>
+        <input type="file" id="video-file-input" accept="video/*" style="display:none">
+        <button class="dash-btn outlined" onclick="document.getElementById('video-file-input').click()">Choose File</button>
+      </div>
+
+      <div class="videos-grid" id="full-videos-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- My Content Page -->
+    <div class="page-view" id="page-my-content">
+      <div class="page-hero"><h1>My Content</h1><p>All your posts and videos in one place.</p></div>
+      <div class="content-tabs">
+        <button class="ctab active" data-ctab="posts">Posts (12)</button>
+        <button class="ctab" data-ctab="videos">Videos (8)</button>
+      </div>
+      <div class="cards-grid">
+        <div class="content-card"><div class="cc-thumb" style="background:linear-gradient(135deg,#1a1a2e,#4da6ff)"></div><div class="cc-info"><div class="cc-title">Morning Training Regimen 04</div><div class="cc-meta">420 views · 2 hrs ago</div></div></div>
+        <div class="content-card"><div class="cc-thumb" style="background:linear-gradient(135deg,#1a2e1a,#4dff88)"></div><div class="cc-info"><div class="cc-title">Post-Match Analysis: Quarter Finals</div><div class="cc-meta">1.1k views · 1 day ago</div></div></div>
+        <div class="content-card"><div class="cc-thumb" style="background:linear-gradient(135deg,#2e1a1a,#ff6b4d)"></div><div class="cc-info"><div class="cc-title">Sprint Drill — Speed Test 12</div><div class="cc-meta">678 views · 3 days ago</div></div></div>
+        <div class="content-card"><div class="cc-thumb" style="background:linear-gradient(135deg,#2e2a1a,#ffd04d)"></div><div class="cc-info"><div class="cc-title">Agility Ladder Training</div><div class="cc-meta">345 views · 5 days ago</div></div></div>
+      </div>
+    </div>
+
+    <!-- Achievements Page -->
+    <div class="page-view" id="page-achievements">
+      <div class="page-hero">
+        <h1>My Achievements</h1>
+        <p>Your record of excellence and milestones reached on Athleon Global.</p>
+      </div>
+      <div class="achievements-grid-full" id="achievements-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- AI Coach Chat Page -->
+    <div class="page-view" id="page-analytics">
+      <div class="page-hero">
+        <h1>AthleonAI Performance Coach</h1>
+        <p>Expert analysis and real-time coaching for your athletic growth.</p>
+      </div>
+      
+      <div class="messages-layout" style="height: calc(100vh - 250px); min-height: 500px;">
+        <!-- Chat History (Left) -->
+        <div class="msg-list card" style="display: flex; flex-direction: column;">
+          <div class="card-header" style="flex-shrink: 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem;">
+            <button class="dash-btn primary" id="new-chat-btn" style="width: 100%;">+ New Chat</button>
+          </div>
+          <div id="chat-history-list" style="overflow-y:auto; flex: 1;">
+            <!-- History items populate here -->
+          </div>
+        </div>
+        
+        <!-- Chat UI (Right) -->
+        <div class="msg-chat card" style="display: flex; flex-direction: column;">
+          <div class="chat-header" style="flex-shrink: 0;">
+            <div class="msg-avatar" style="background:#7c3aed;width:36px;height:36px;font-size:0.8rem">AI</div>
+            <div style="flex: 1;">
+              <div class="msg-name">AthleonAI Coach</div>
+              <div style="font-size:0.75rem;color:var(--text-muted)">Personalized insights</div>
+            </div>
+          </div>
+          <div class="chat-body" id="chat-body" style="flex: 1; overflow-y: auto;">
+            <div class="chat-bubble received">Hello! I'm your AthleonAI coach. How can I help you today?</div>
+          </div>
+          <div class="chat-input-row" style="flex-shrink: 0;">
+            <input type="text" id="chat-input-text" class="form-input-d" placeholder="Ask your coach anything..." style="flex:1">
+            <button class="dash-btn primary" id="chat-send-btn" style="padding:0.6em 1.2em">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Video Lab Page (Showcase) -->
+    <div class="page-view" id="page-ai-lab">
+      <div class="page-hero">
+        <h1>AI Video Lab</h1>
+        <p>Showcase: Upload any video to experience advanced athletic performance scanning.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+          <h2 class="card-title">Performance Scanner</h2>
+        </div>
+        <div id="scanner-upload-area" style="padding: 3rem; border: 2px dashed var(--border); border-radius: var(--radius); text-align: center; margin: 1rem; cursor: pointer;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
+          <h3>Drop video here or click to select</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Simulate a pro-level athletic scan</p>
+          <input type="file" id="scanner-file-input" style="display:none" accept="video/*">
+          <button class="dash-btn primary" style="margin-top: 1.5rem;" id="scan-start-btn">Start AI Scan</button>
+        </div>
+
+        <!-- Scanning Animation (Hidden by default) -->
+        <div id="scan-process-area" style="display:none; padding: 4rem; text-align: center;">
+          <div class="scanner-line"></div>
+          <div style="margin-top: 2rem; font-weight: 700; color: #7c3aed; letter-spacing: 2px;">ANALYZING BIOMECHANICS...</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Detecting joints, velocity, and vector force...</div>
+        </div>
+
+        <!-- Mock Scan Results (Hidden by default) -->
+        <div id="scan-results-area" style="display:none; padding: 1rem;">
+          <div class="summary-box">
+             <div class="summary-body" style="display: flex; gap: 2rem;">
+                <div class="summary-stats" style="flex:1">
+                  <h3 style="margin-bottom: 1.5rem; color: #7c3aed;">Scan Insights</h3>
+                  <div class="chart-container">
+                    <div class="mock-chart-bar" style="height: 85%" title="Explosiveness"><span>Launch</span></div>
+                    <div class="mock-chart-bar" style="height: 72%" title="Stability"><span>Balance</span></div>
+                    <div class="mock-chart-bar" style="height: 94%" title="Intensity"><span>Power</span></div>
+                    <div class="mock-chart-bar" style="height: 55%" title="Consistency"><span>Form</span></div>
+                  </div>
+                </div>
+                <div class="summary-details" style="flex:1">
+                  <div class="insight-box positive">
+                    <h3>Peak Performance Found</h3>
+                    <p>Scanning detected a peak velocity of 8.4 m/s at 2.5s. This is professional-grade acceleration.</p>
+                  </div>
+                  <div class="insight-box highlight" style="margin-top: 1rem;">
+                    <h3>Pro Comparison</h3>
+                    <p>Your mechanics are 88% similar to elite sprinters in the transition phase.</p>
+                  </div>
+                </div>
+             </div>
+             <button class="dash-btn outlined" id="scan-reset-btn" style="margin-top: 1.5rem;">Reset Lab</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages Page -->
+    <div class="page-view" id="page-messages">
+      <div class="page-hero"><h1>Messages</h1><p>Connect with other athletes and coaches.</p></div>
+      <div class="messages-layout">
+        <div class="msg-list card">
+          <div class="msg-item active"><div class="msg-avatar" style="background:#4da6ff">JK</div><div class="msg-info"><div class="msg-name">James Kowalski</div><div class="msg-preview">Great match yesterday! 🔥</div></div><div class="msg-time">2h</div></div>
+          <div class="msg-item"><div class="msg-avatar" style="background:#a78bfa">SR</div><div class="msg-info"><div class="msg-name">Sarah Reynolds</div><div class="msg-preview">Can we schedule a training session?</div></div><div class="msg-time">1d</div></div>
+          <div class="msg-item"><div class="msg-avatar" style="background:#4dff88">CM</div><div class="msg-info"><div class="msg-name">Coach Marcus</div><div class="msg-preview">Review your stats from last week</div></div><div class="msg-time">2d</div></div>
+        </div>
+        <div class="msg-chat card">
+          <div class="chat-header"><div class="msg-avatar" style="background:#4da6ff;width:36px;height:36px;font-size:0.8rem">JK</div><div><div class="msg-name">James Kowalski</div><div style="font-size:0.75rem;color:#666">Online</div></div></div>
+          <div class="chat-body">
+            <div class="chat-bubble received">Great match yesterday! You were on fire 🔥</div>
+            <div class="chat-bubble sent">Thanks! The team played brilliantly together.</div>
+            <div class="chat-bubble received">Are you training this weekend?</div>
+          </div>
+          <div class="chat-input-row"><input type="text" class="form-input-d" placeholder="Type a message..." style="flex:1"><button class="dash-btn primary" style="padding:0.6em 1.2em">Send</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Find Page -->
+    <div class="page-view" id="page-find">
+      <div class="page-hero">
+        <h1>Find Athletes</h1>
+        <p>Discover players, check certifications, and review their posted skills and videos.</p>
+        <div style="margin-top: 1rem; max-width: 400px; position: relative;">
+          <input type="text" id="find-search-input" class="form-input-d" placeholder="Search by name, skill, username..." style="padding-left:2.5rem;">
+          <svg style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      
+      <!-- Athlete Grid -->
+      <div id="find-grid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));gap:1.5rem;margin-top:1.5rem;">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Profile Overlay Modal -->
+    <div id="player-profile-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:2rem;">
+      <div style="background:var(--surface);width:100%;max-width:800px;height:90vh;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md);overflow-y:auto;position:relative;">
+        <button id="close-profile-overlay" style="position:absolute;top:15px;right:15px;background:none;border:none;color:var(--text-secondary);cursor:pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div style="padding:2rem;" id="modal-profile-content">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Match Page -->
+    <div class="page-view" id="page-create-match">
+      <div class="page-hero">
+        <h1>Create Match & Log Stats</h1>
+        <p>Record a match, set teams, and track live stats for MVP calculations.</p>
+      </div>
+      <div class="card">
+        <div id="match-setup-step">
+          <div class="form-group-d">
+            <label class="form-label-d">Select Sport</label>
+            <select id="match-sport-select" class="form-input-d">
+              <option value="football">Football</option>
+              <option value="cricket">Cricket</option>
+              <option value="basketball">Basketball</option>
+              <option value="rugby">Rugby</option>
+              <option value="tennis">Tennis</option>
+            </select>
+          </div>
+          <div class="form-row-d">
+            <div class="form-group-d">
+              <label class="form-label-d">Team A Name</label>
+              <input type="text" id="match-team-a" class="form-input-d" placeholder="e.g. London Strikers">
+            </div>
+            <div class="form-group-d">
+              <label class="form-label-d">Team B Name</label>
+              <input type="text" id="match-team-b" class="form-input-d" placeholder="e.g. Manchester Utd">
+            </div>
+          </div>
+          <button class="dash-btn primary" id="start-match-btn" style="margin-top: 1rem;">Start Live Match Logging</button>
+        </div>
+
+        <div id="match-active-step" style="display:none;">
+          <!-- Team A vs Team B Live UI -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 id="live-team-a" style="font-size: 1.5rem">Team A</h2>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--color-primary)"><span id="score-a">0</span> - <span id="score-b">0</span></div>
+            <h2 id="live-team-b" style="font-size: 1.5rem">Team B</h2>
+          </div>
+
+          <div class="form-row-d">
+            <!-- Add player to Team A -->
+            <div class="form-group-d" style="flex:1; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 8px;">
+              <label class="form-label-d">Add Player to Team A</label>
+              <div style="display: flex; gap: 0.5rem">
+                <input type="text" id="add-player-a-input" class="form-input-d" placeholder="Player Name">
+                <button class="dash-btn outlined" id="add-player-a-btn">Add</button>
+              </div>
+              <div id="roster-a" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+            </div>
+
+            <!-- Add player to Team B -->
+            <div class="form-group-d" style="flex:1; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 8px;">
+              <label class="form-label-d">Add Player to Team B</label>
+              <div style="display: flex; gap: 0.5rem">
+                <input type="text" id="add-player-b-input" class="form-input-d" placeholder="Player Name">
+                <button class="dash-btn outlined" id="add-player-b-btn">Add</button>
+              </div>
+              <div id="roster-b" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+            </div>
+          </div>
+          
+          <button class="dash-btn primary" id="end-match-btn" style="margin-top: 2rem; width: 100%;">End Match & Calculate MVP</button>
+        </div>
+
+        <div id="match-summary-step" style="display:none; text-align: center;">
+          <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--color-primary)">Match Finished</h2>
+          <div style="font-size: 1.5rem; margin-bottom: 2rem;"><span id="final-team-a">A</span> <span id="final-score">0 - 0</span> <span id="final-team-b">B</span></div>
+          
+          <div class="card" style="background: rgba(77, 166, 255, 0.1); border: 1px solid rgba(77, 166, 255, 0.3); display: inline-block; padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🏆</div>
+            <h3 style="color: var(--color-text-muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Man of the Match / MVP</h3>
+            <div id="mvp-name" style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; color: var(--color-text-primary)">Calculating...</div>
+            <div id="mvp-stats" style="font-size: 0.9rem; color: var(--color-primary); margin-top: 0.5rem;">-</div>
+          </div>
+          
+          <button class="dash-btn outlined" id="new-match-btn" style="margin-top: 2rem; display: block; margin-left: auto; margin-right: auto;">Start New Match</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Settings Page -->
+    <div class="page-view" id="page-profile">
+      <div class="page-hero"><h1>Profile Settings</h1><p>Update your information, upload certificates, and choose your sports.</p></div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <div class="profile-top">
+          <div class="profile-avatar-lg" id="profile-avatar-lg" style="background-size: cover; background-position: center;">A</div>
+          <div>
+            <div class="profile-name-lg" id="profile-name-lg">Athlete</div>
+            <div class="profile-sport-lg" id="profile-roles-lg">Sports</div>
+            <label class="dash-btn outlined" style="margin-top:0.75rem; cursor:pointer; display:inline-block">
+              Change Photo
+              <input type="file" id="upload-photo-input" accept="image/*" style="display:none">
+            </label>
+          </div>
+        </div>
+        <form class="profile-form" id="profile-form">
+          <div class="form-row-d">
+            <div class="form-group-d"><label class="form-label-d">Full Name</label><input type="text" class="form-input-d" id="pf-name" placeholder="Your full name"></div>
+            <div class="form-group-d"><label class="form-label-d">Email</label><input type="email" class="form-input-d" id="pf-email" placeholder="your@email.com"></div>
+          </div>
+
+          <div class="form-group-d">
+            <label class="form-label-d">Choose your sports (Hold Ctrl/Cmd to select up to 5)</label>
+            <select id="pf-sports-select" class="form-input-d" multiple size="5" style="height: auto; padding: 0.5rem; background: rgba(0,0,0,0.2);">
+              <option value="Football">Football</option>
+              <option value="Cricket">Cricket</option>
+              <option value="Basketball">Basketball</option>
+              <option value="Rugby">Rugby</option>
+              <option value="Tennis">Tennis</option>
+              <option value="Athletics">Athletics</option>
+              <option value="Swimming">Swimming</option>
+              <option value="Volleyball">Volleyball</option>
+              <option value="Hockey">Hockey</option>
+            </select>
+            <small style="color: var(--color-text-muted); display: block; margin-top: 0.5rem;">Selected: <span id="pf-sports-chosen">None</span></small>
+          </div>
+
+          <div class="form-group-d"><label class="form-label-d">Bio</label><textarea class="form-input-d form-textarea-d" id="pf-bio" rows="3" placeholder="Tell your story..."></textarea></div>
+          <button type="submit" class="dash-btn primary" id="save-profile-btn">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Certifications & Achievements -->
+      <div class="form-row-d">
+        <div class="card" style="flex:1">
+          <div class="card-header"><h2 class="card-title">Upload Certifications</h2></div>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem;">Upload diplomas, coaching licenses, or official certificates (PDF or Image).</p>
+          <input type="file" id="upload-cert-input" accept=".pdf,image/*" style="display:none">
+          <button class="dash-btn outlined" onclick="document.getElementById('upload-cert-input').click()" style="width: 100%">Choose File</button>
+          <div id="cert-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        </div>
+
+        <div class="card" style="flex:1">
+          <div class="card-header"><h2 class="card-title">Add Achievement</h2></div>
+          <div class="form-group-d">
+            <input type="text" id="ach-title" class="form-input-d" placeholder="E.g. National Championship MVP">
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="file" id="upload-ach-input" accept="image/*" style="display:none">
+            <button class="dash-btn outlined" onclick="document.getElementById('upload-ach-input').click()" style="padding: 0.6em; margin: 0; min-width: 40px; text-align: center;">📷</button>
+            <button class="dash-btn primary" id="add-ach-btn" style="flex: 1">Add Achievement</button>
+          </div>
+          <div id="ach-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Quick Action Modals -->
+  <div class="da-overlay" id="da-overlay"></div>
+  <div class="da-modal" id="da-modal">
+    <button class="auth-close" id="da-close">&times;</button>
+    <div id="da-modal-content"></div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

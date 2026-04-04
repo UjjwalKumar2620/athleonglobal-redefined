@@ -16,6 +16,7 @@
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
 </head>
 <body>
 
@@ -44,15 +45,12 @@
 
     <ul class="nav-links" id="nav-links">
       <li><a href="#hero">Home</a></li>
-      <li><a href="#football-section">Products</a></li>
-      <li><a href="#basketball-section">Technology</a></li>
-      <li><a href="#rugby-section">Innovation</a></li>
-      <li><a href="#contact-section">Contact</a></li>
+      <li><a href="#contact-section" class="nav-contact-link">Contact</a></li>
     </ul>
 
     <div class="nav-buttons">
-      <a href="#" class="btn btn-outline">Login</a>
-      <a href="#" class="btn btn-primary">Sign Up</a>
+      <a href="#" class="btn btn-outline" id="login-btn">Login</a>
+      <a href="#" class="btn btn-primary" id="signup-btn">Sign Up</a>
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -98,27 +96,13 @@
             Performance
           </h1>
           <p class="hero-subtitle">
-            Engineered with cutting-edge technology and premium materials,
-            Athleon Global delivers sports equipment that transcends boundaries
-            and elevates every athlete's potential.
+            Athleon Global is a sports networking platform designed to bring athletes
+            together on a single digital stage. It allows players to showcase their skills,
+            share performance videos, and connect with others across different regions.
+            The goal is simple — make talent visible and accessible.
           </p>
           <div class="hero-buttons">
-            <a href="#football-section" class="btn btn-glow">Explore Products</a>
-            <a href="#video-section" class="btn btn-outline">Watch Film</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-number">50+</span>
-              <span class="stat-label">Sports Categories</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">12M</span>
-              <span class="stat-label">Athletes Worldwide</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">99%</span>
-              <span class="stat-label">Performance Rating</span>
-            </div>
+            <a href="#football-section" class="btn btn-glow">Discover More</a>
           </div>
         </div>
 
@@ -143,6 +127,7 @@
             <img src="assets/images/tennis-ball.png" alt="Tennis Ball" loading="lazy">
           </div>
         </div>
+
 
       </div>
     </div>
@@ -199,14 +184,13 @@
 
         <!-- Text Side -->
         <div class="basketball-text">
-          <span class="basketball-label">Philosophy</span>
-          <h2 class="basketball-title">ENGINEERED<br>PRECISION</h2>
+          <span class="basketball-label">Our Vision</span>
+          <h2 class="basketball-title">BRIDGING TALENT<br>AND OPPORTUNITY</h2>
           <p class="basketball-desc">
-            Aerodynamic perfection meets unparalleled grip. Our basketballs
-            are crafted with precision, using advanced composite materials
-            and engineering to deliver consistent flight, maximum control,
-            and a superior touch in every condition. The result is a ball that
-            responds flawlessly to your skill on the court.
+            Athleon Global creates a structured ecosystem where athletes can present
+            their performance, build credibility, and connect with the right people.
+            It removes barriers by providing a platform where skill, consistency,
+            and effort are visible to everyone.
           </p>
         </div>
 
@@ -229,18 +213,17 @@
           </div>
         </div>
 
-        <h2 class="rugby-title">AERO-CORE<br>TECHNOLOGY</h2>
+        <h2 class="rugby-title">IMPROVE<br>WITH DATA</h2>
         <p class="rugby-desc">
-          Engineered with premium, hand-selected natural leather for superior grip and authentic feel.
-          Our Aero-Core technology optimizes airflow, delivering unmatched stability and control on
-          every pass and shot. Experience the future of performance with revolutionary design.
+          Athleon Global includes an AI-powered system that helps analyze performance and provide insights.
+          It guides athletes on how they can improve based on their gameplay.
         </p>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ SECTION 5 — VIDEO + GLASS UI ═══════════ -->
+  <!-- ═══════════ SECTION 5 — VIDEO CINEMATIC ═══════════ -->
   <section class="section" id="video-section">
     <div class="video-bg">
       <video autoplay muted loop playsinline preload="metadata" id="bg-video">
@@ -248,16 +231,35 @@
       </video>
       <div class="video-overlay"></div>
     </div>
-    <div class="video-content">
-      <div class="glass-card" id="glass-card">
-        <span class="glass-label">Performance Redefined</span>
-        <h2 class="glass-title">Where Innovation<br>Meets Athleticism</h2>
-        <p class="glass-desc">
-          Every movement matters. Every design decision is driven by data,
-          athlete feedback, and relentless pursuit of perfection. We don't
-          just make equipment — we engineer competitive advantages.
+    <!-- Cinematic text directly on video — no glass card -->
+    <div class="video-content cinematic-content">
+      <div class="cinematic-text" id="cinematic-text">
+        <div class="cinematic-eyebrow" id="cinematic-eyebrow">Performance Redefined</div>
+        <h2 class="cinematic-headline" id="cinematic-headline">
+          <span class="line-reveal">Push Your</span>
+          <span class="line-reveal accent-line">Limits.</span>
+        </h2>
+        <p class="cinematic-quote" id="cinematic-quote">
+          "Champions aren't born. They are forged — rep by rep,<br>
+          game by game, with equipment built for greatness."
         </p>
-        <a href="#contact-section" class="btn btn-glow glass-btn">
+        <div class="cinematic-stats" id="cinematic-stats">
+          <div class="cin-stat">
+            <span class="cin-num">50+</span>
+            <span class="cin-label">Sports</span>
+          </div>
+          <div class="cin-divider"></div>
+          <div class="cin-stat">
+            <span class="cin-num">12M</span>
+            <span class="cin-label">Athletes</span>
+          </div>
+          <div class="cin-divider"></div>
+          <div class="cin-stat">
+            <span class="cin-num">99%</span>
+            <span class="cin-label">Performance</span>
+          </div>
+        </div>
+        <a href="#contact-section" class="btn btn-glow cinematic-btn" id="cinematic-btn">
           Get Started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -273,18 +275,49 @@
       <div class="contact-content">
 
         <h2 class="contact-title">
-          Let's Build The<br>
-          <span class="gradient-text">Future Together</span>
+          Get in Touch<br>
+          <span class="gradient-text">We'd Love to Hear From You</span>
         </h2>
 
         <p class="contact-subtitle">
-          Ready to elevate your game? Connect with our team and discover
-          what Athleon Global can do for you.
+          Have a question, idea, or want to collaborate? Drop us a message
+          and our team will get back to you shortly.
         </p>
 
-        <a href="mailto:hello@athleonglobal.com" class="contact-email">
-          hello@athleonglobal.com
-        </a>
+        <!-- Contact Form -->
+        <div class="contact-form-container" id="contact-form-container">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Your Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email Address</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea id="contact-message" class="form-input form-textarea" placeholder="What's on your mind?" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-glow form-submit-btn">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+              </svg>
+            </button>
+          </form>
+          <div class="form-success" id="form-success" style="display:none;">
+            <div class="success-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-blue)" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3 class="success-title">Message Sent!</h3>
+            <p class="success-desc">Thanks for reaching out. We'll get back to you soon.</p>
+          </div>
+        </div>
 
         <div class="social-links">
           <!-- Twitter/X -->
@@ -318,10 +351,86 @@
     </div>
   </section>
 
+  <!-- ═══════════ AUTH MODAL ═══════════ -->
+  <div class="auth-overlay" id="auth-overlay"></div>
+  <div class="auth-modal" id="auth-modal">
+    <button class="auth-close" id="auth-close">&times;</button>
+
+    <!-- Login Tab -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form class="auth-form" id="login-form">
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-subtitle">Sign in to your Athleon Global account</p>
+      <div class="form-group">
+        <label for="login-email" class="form-label">Email</label>
+        <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password" class="form-label">Password</label>
+        <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="btn btn-primary auth-submit">Login</button>
+      <div class="auth-divider">
+        <span>OR</span>
+      </div>
+      <button type="button" class="btn btn-google btn-outline" onclick="handleGoogleSignIn()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" class="google-logo">
+        Login with Google
+      </button>
+    </form>
+
+    <!-- Signup Form -->
+    <form class="auth-form" id="signup-form" style="display:none;">
+      <h2 class="auth-title">Create Account</h2>
+      <p class="auth-subtitle">Join the Athleon Global network</p>
+      <div class="form-group">
+        <label for="signup-name" class="form-label">Full Name</label>
+        <input type="text" id="signup-name" class="form-input" placeholder="Your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-email" class="form-label">Email</label>
+        <input type="email" id="signup-email" class="form-input" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password" class="form-label">Password</label>
+        <input type="password" id="signup-password" class="form-input" placeholder="Create a password" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-sport" class="form-label">Primary Sport</label>
+        <select id="signup-sport" class="form-input" required>
+          <option value="" disabled selected>Select your sport</option>
+          <option value="football">Football</option>
+          <option value="basketball">Basketball</option>
+          <option value="cricket">Cricket</option>
+          <option value="tennis">Tennis</option>
+          <option value="rugby">Rugby</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary auth-submit">Create Account</button>
+      <div class="auth-divider">
+        <span>OR</span>
+      </div>
+      <button type="button" class="btn btn-google btn-outline" onclick="handleGoogleSignIn()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" class="google-logo">
+        Sign up with Google
+      </button>
+    </form>
+  </div>
+
   <!-- Scripts -->
+  <!-- Firebase SDKs (MUST load synchronously before config) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="js/firebase-config.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/smoke.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>

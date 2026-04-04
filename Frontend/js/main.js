@@ -177,71 +177,33 @@
     const footballBallMain = document.getElementById('football-ball-main');
 
     if (footballSection) {
-      // Entrance: welcome text — play once, never reverse
+      // Text only — ball visibility is owned by the traveling ball
       gsap.fromTo('.football-welcome',
         { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.8,
-          scrollTrigger: {
-            trigger: '#football-section',
-            start: 'top 70%',
-            once: true
-          }
+        { opacity: 1, y: 0, duration: 0.8,
+          scrollTrigger: { trigger: '#football-section', start: 'top 70%', once: true }
         }
       );
-
-      // Entrance: title
       gsap.fromTo('.football-title',
         { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#football-section',
-            start: 'top 70%',
-            once: true
-          }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#football-section', start: 'top 70%', once: true }
         }
       );
-
-      // Entrance: football ball
-      if (footballBallMain) {
-        gsap.fromTo(footballBallMain,
-          { opacity: 0, scale: 0.6 },
-          {
-            opacity: 1, scale: 1, duration: 1.2, ease: 'back.out(1.4)',
-            scrollTrigger: {
-              trigger: '#football-section',
-              start: 'top 75%',
-              once: true
-            }
-          }
-        );
-
-        // Parallax effect — positional only, never changes opacity
-        gsap.to(footballBallMain, {
-          scrollTrigger: {
-            trigger: '#football-section',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 2,
-          },
-          y: -60,
-          ease: 'none'
-        });
-      }
-
-      // Entrance: learn more button
       gsap.fromTo('.football-btn',
         { opacity: 0, y: 20 },
-        {
-          opacity: 1, y: 0, duration: 0.8,
-          scrollTrigger: {
-            trigger: '#football-section',
-            start: 'top 60%',
-            once: true
-          }
+        { opacity: 1, y: 0, duration: 0.8,
+          scrollTrigger: { trigger: '#football-section', start: 'top 60%', once: true }
         }
       );
+
+      // Parallax positional only — no opacity change
+      if (footballBallMain) {
+        gsap.to(footballBallMain, {
+          scrollTrigger: { trigger: '#football-section', start: 'top bottom', end: 'bottom top', scrub: 2 },
+          y: -60, ease: 'none'
+        });
+      }
     }
 
     // ─────────────────────────────────────
@@ -256,61 +218,28 @@
     // ─────────────────────────────────────
     const basketballSection = document.getElementById('basketball-section');
     if (basketballSection) {
-      // Basketball entrance — once only
-      gsap.fromTo('.basketball-visual',
-        { opacity: 0, x: -80, scale: 0.8 },
-        {
-          opacity: 1, x: 0, scale: 1, duration: 1.2, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#basketball-section',
-            start: 'top 70%',
-            once: true
-          }
-        }
-      );
-
+      // Text entrance only — ball is owned by traveling ball
       gsap.fromTo('.basketball-text',
         { opacity: 0, x: 80 },
-        {
-          opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#basketball-section',
-            start: 'top 60%',
-            once: true
-          }
+        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#basketball-section', start: 'top 60%', once: true }
         }
       );
 
-      // Parallax on basketball
+      // Parallax positional only
       gsap.to('#basketball-ball-main', {
-        scrollTrigger: {
-          trigger: '#basketball-section',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 2,
-        },
-        y: -40,
-        rotation: -10,
-        ease: 'none'
+        scrollTrigger: { trigger: '#basketball-section', start: 'top bottom', end: 'bottom top', scrub: 2 },
+        y: -40, rotation: -10, ease: 'none'
       });
 
-      // Orbit rings parallax
       gsap.to('.orbit-ring-1', {
-        scrollTrigger: {
-          trigger: '#basketball-section',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 3,
-        },
-        rotation: 180,
-        ease: 'none'
+        scrollTrigger: { trigger: '#basketball-section', start: 'top bottom', end: 'bottom top', scrub: 3 },
+        rotation: 180, ease: 'none'
       });
 
-      // Update side steps
       ScrollTrigger.create({
         trigger: '#basketball-section',
-        start: 'top center',
-        end: 'bottom center',
+        start: 'top center', end: 'bottom center',
         onEnter: () => updateSteps(1),
         onEnterBack: () => updateSteps(1),
       });
@@ -327,48 +256,23 @@
     // ─────────────────────────────────────
     const rugbySection = document.getElementById('rugby-section');
     if (rugbySection) {
-      // Rugby entrance — once only
-      gsap.fromTo('.rugby-visual',
-        { opacity: 0, scale: 0.7, y: 60 },
-        {
-          opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'back.out(1.2)',
-          scrollTrigger: {
-            trigger: '#rugby-section',
-            start: 'top 70%',
-            once: true
-          }
-        }
-      );
-
+      // Text-only entrances — rugby ball is owned by traveling ball
       gsap.fromTo('.rugby-title',
         { opacity: 0, y: 60 },
-        {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#rugby-section',
-            start: 'top 50%',
-            once: true
-          }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#rugby-section', start: 'top 50%', once: true }
         }
       );
-
       gsap.fromTo('.rugby-desc',
         { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#rugby-section',
-            start: 'top 40%',
-            once: true
-          }
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '#rugby-section', start: 'top 40%', once: true }
         }
       );
 
-      // Update side steps
       ScrollTrigger.create({
         trigger: '#rugby-section',
-        start: 'top center',
-        end: 'bottom center',
+        start: 'top center', end: 'bottom center',
         onEnter: () => updateSteps(2),
         onEnterBack: () => updateSteps(2),
       });
@@ -394,74 +298,25 @@
         start: 'top 150%',
         once: true,
         onEnter: () => {
-          if (bgVideo) {
-            bgVideo.play().catch(() => {});
-          }
+          if (bgVideo) bgVideo.play().catch(() => {});
         }
       });
 
-      // Glass card entrance
-      if (glassCard) {
-        gsap.fromTo(glassCard,
-          { opacity: 0, y: 80, scale: 0.9 },
-          {
-            opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out',
-            scrollTrigger: {
-              trigger: '#video-section',
-              start: 'top 60%',
-              once: true
-            }
-          }
-        );
+      // Cinematic text entrance animations — staggered, dramatic
+      const cinematicTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#video-section',
+          start: 'top 60%',
+          once: true
+        }
+      });
 
-        gsap.fromTo('.glass-label',
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1, y: 0, duration: 0.6, delay: 0.3,
-            scrollTrigger: {
-              trigger: '#video-section',
-              start: 'top 55%',
-              once: true
-            }
-          }
-        );
-
-        gsap.fromTo('.glass-title',
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1, y: 0, duration: 0.8, delay: 0.5,
-            scrollTrigger: {
-              trigger: '#video-section',
-              start: 'top 55%',
-              once: true
-            }
-          }
-        );
-
-        gsap.fromTo('.glass-desc',
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1, y: 0, duration: 0.6, delay: 0.7,
-            scrollTrigger: {
-              trigger: '#video-section',
-              start: 'top 50%',
-              once: true
-            }
-          }
-        );
-
-        gsap.fromTo('.glass-btn',
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1, y: 0, duration: 0.6, delay: 0.9,
-            scrollTrigger: {
-              trigger: '#video-section',
-              start: 'top 45%',
-              once: true
-            }
-          }
-        );
-      }
+      cinematicTl
+        .to('#cinematic-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+        .to('.line-reveal', { opacity: 1, y: 0, duration: 0.9, stagger: 0.18, ease: 'power4.out' }, '-=0.3')
+        .to('#cinematic-quote', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.2')
+        .to('#cinematic-stats', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2')
+        .to('#cinematic-btn', { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.5)' }, '-=0.1');
     }
 
     // ─────────────────────────────────────
@@ -609,6 +464,128 @@
       }, 250);
     });
 
+    // ─────────────────────────────────────
+    // CONTACT FORM HANDLER
+    // ─────────────────────────────────────
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Animate form out
+        gsap.to(contactForm, {
+          opacity: 0,
+          y: -20,
+          duration: 0.4,
+          ease: 'power2.in',
+          onComplete: () => {
+            contactForm.style.display = 'none';
+            formSuccess.style.display = 'flex';
+            gsap.fromTo(formSuccess,
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+            );
+          }
+        });
+      });
+    }
+
+    // ─────────────────────────────────────
+    // AUTH MODAL CONTROLLER
+    // ─────────────────────────────────────
+    const authOverlay = document.getElementById('auth-overlay');
+    const authModal = document.getElementById('auth-modal');
+    const authClose = document.getElementById('auth-close');
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+
+    function openModal(tab) {
+      authOverlay.classList.add('active');
+      authModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Switch to correct tab
+      switchTab(tab);
+    }
+
+    function closeModal() {
+      authOverlay.classList.remove('active');
+      authModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function switchTab(tab) {
+      authTabs.forEach(t => {
+        t.classList.toggle('active', t.dataset.tab === tab);
+      });
+      if (tab === 'login') {
+        loginForm.style.display = '';
+        signupForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = '';
+      }
+    }
+
+    if (loginBtn) loginBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
+    if (signupBtn) signupBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('signup'); });
+    if (authClose) authClose.addEventListener('click', closeModal);
+    if (authOverlay) authOverlay.addEventListener('click', closeModal);
+
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+
+    // Form submissions → redirect to dashboard
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('login-email').value.split('@')[0];
+        localStorage.setItem('athleon_user', JSON.stringify({ name: name, email: document.getElementById('login-email').value }));
+        window.location.href = 'dashboard.html';
+      });
+    }
+
+    if (signupForm) {
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signup-name').value;
+        localStorage.setItem('athleon_user', JSON.stringify({
+          name: name,
+          email: document.getElementById('signup-email').value,
+          sport: document.getElementById('signup-sport').value
+        }));
+        window.location.href = 'dashboard.html';
+      });
+    }
+
   }); // end waitForGSAP
 
 })();
+
+// Global function for Google Sign-In
+window.handleGoogleSignIn = async function() {
+  try {
+    if (typeof signInWithGoogle !== 'function') {
+      alert('Google Sign-In is not configured yet. Set up firebase-config.js');
+      return;
+    }
+    const user = await signInWithGoogle();
+    
+    // Store in localStorage for dashboard
+    localStorage.setItem('athleon_user', JSON.stringify({
+      name: user.name,
+      email: user.email,
+      photo: user.photo,
+      uid: user.uid,
+      sport: 'General' // Default, can be changed in profile
+    }));
+    
+    window.location.href = 'dashboard.html';
+  } catch (error) {
+    console.error('Google Sign-In Error:', error);
+    alert('Failed to sign in with Google: ' + error.message);
+  }
+};

@@ -49,6 +49,7 @@
     </ul>
 
     <div class="nav-buttons">
+      <a href="#" class="btn btn-glow" id="buy-credits-btn">Buy Credits</a>
       <a href="#" class="btn btn-outline" id="login-btn">Login</a>
       <a href="#" class="btn btn-primary" id="signup-btn">Sign Up</a>
     </div>
@@ -421,6 +422,49 @@
         Sign up with Google
       </button>
     </form>
+  </div>
+
+  <!-- ═══════════ CREDITS MODAL ═══════════ -->
+  <div class="auth-overlay" id="credits-overlay"></div>
+  <div class="auth-modal" id="credits-modal">
+    <button class="auth-close" id="credits-close">&times;</button>
+
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <h2 class="auth-title">Buy AI Credits</h2>
+      <p class="auth-subtitle">Get more processing power for video analysis</p>
+    </div>
+
+    <div class="credits-plans" style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Plan 1 -->
+      <div class="credit-plan" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.3s; background: rgba(255,255,255,0.03);">
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem; font-weight: 600;">Starter</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.85rem;">100 AI Credits</p>
+        </div>
+        <div style="font-size: 1.25rem; font-weight: bold;">$4.99</div>
+      </div>
+
+      <!-- Plan 2 -->
+      <div class="credit-plan" style="border: 1px solid var(--color-accent-blue); border-radius: 12px; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.3s; background: rgba(0, 212, 255, 0.05); position: relative;">
+        <div style="position: absolute; top: -10px; right: 15px; background: var(--color-accent-blue); color: #000; font-size: 0.65rem; font-weight: bold; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">Most Popular</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem; font-weight: 600; color: var(--color-accent-blue);">Pro Athlete</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.85rem;">500 AI Credits</p>
+        </div>
+        <div style="font-size: 1.25rem; font-weight: bold; color: var(--color-accent-blue);">$19.99</div>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="credit-plan" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.3s; background: rgba(255,255,255,0.03);">
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem; font-weight: 600;">Elite</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.85rem;">2000 AI Credits</p>
+        </div>
+        <div style="font-size: 1.25rem; font-weight: bold;">$49.99</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary auth-submit" id="checkout-btn" style="margin-top: 1.5rem;" onclick="alert('Redirecting to checkout...')">Proceed to Checkout</button>
   </div>
 
   <!-- Scripts -->

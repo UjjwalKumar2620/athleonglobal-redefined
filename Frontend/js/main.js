@@ -502,6 +502,13 @@
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
 
+    // Credits modal elements
+    const creditsOverlay = document.getElementById('credits-overlay');
+    const creditsModal = document.getElementById('credits-modal');
+    const creditsClose = document.getElementById('credits-close');
+    const buyCreditsBtn = document.getElementById('buy-credits-btn');
+    const creditPlans = document.querySelectorAll('.credit-plan');
+
     function openModal(tab) {
       authOverlay.classList.add('active');
       authModal.classList.add('active');
@@ -510,9 +517,17 @@
       switchTab(tab);
     }
 
+    function openCreditsModal() {
+      creditsOverlay.classList.add('active');
+      creditsModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
     function closeModal() {
       authOverlay.classList.remove('active');
       authModal.classList.remove('active');
+      if (creditsOverlay) creditsOverlay.classList.remove('active');
+      if (creditsModal) creditsModal.classList.remove('active');
       document.body.style.overflow = '';
     }
 
@@ -531,8 +546,27 @@
 
     if (loginBtn) loginBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
     if (signupBtn) signupBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('signup'); });
+    if (buyCreditsBtn) buyCreditsBtn.addEventListener('click', (e) => { e.preventDefault(); openCreditsModal(); });
+    
     if (authClose) authClose.addEventListener('click', closeModal);
     if (authOverlay) authOverlay.addEventListener('click', closeModal);
+    
+    if (creditsClose) creditsClose.addEventListener('click', closeModal);
+    if (creditsOverlay) creditsOverlay.addEventListener('click', closeModal);
+
+    // Credit plan selection logic
+    if (creditPlans) {
+      creditPlans.forEach(plan => {
+        plan.addEventListener('click', () => {
+          creditPlans.forEach(p => {
+            p.style.borderColor = 'rgba(255,255,255,0.1)';
+            p.style.background = 'rgba(255,255,255,0.03)';
+          });
+          plan.style.borderColor = 'var(--color-accent-blue)';
+          plan.style.background = 'rgba(0, 212, 255, 0.05)';
+        });
+      });
+    }
 
     authTabs.forEach(tab => {
       tab.addEventListener('click', () => switchTab(tab.dataset.tab));

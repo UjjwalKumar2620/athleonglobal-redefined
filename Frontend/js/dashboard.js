@@ -226,6 +226,43 @@
     }
   }
 
+  function renderAchievements() {
+    const dashList = document.getElementById('dashboard-achievements-list');
+    const fullGrid = document.getElementById('achievements-grid');
+
+    if (dashList) {
+      dashList.innerHTML = '';
+      mockAchievements.forEach(a => {
+        const item = document.createElement('div');
+        item.className = 'achievement-item';
+        item.style.cssText = 'display:flex; align-items:center; gap:1rem; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.05);';
+        item.innerHTML = `
+          <span style="font-size:1.5rem">${a.icon}</span>
+          <div style="flex:1">
+            <div style="font-weight:700; font-size:0.9rem; color:#fff;">${a.name}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${a.date}</div>
+          </div>
+        `;
+        dashList.appendChild(item);
+      });
+    }
+
+    if (fullGrid) {
+      fullGrid.innerHTML = '';
+      mockAchievements.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.cssText = 'text-align:center; padding:2rem; border:1px solid var(--border);';
+        card.innerHTML = `
+          <div style="font-size:3rem; margin-bottom:1rem;">${a.icon}</div>
+          <h3 style="font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:0.5rem;">${a.name}</h3>
+          <div style="font-size:0.8rem; color:var(--text-muted);">${a.date}</div>
+        `;
+        fullGrid.appendChild(card);
+      });
+    }
+  }
+
   // Initial render
   initAICredits();
   renderRecentVideos();

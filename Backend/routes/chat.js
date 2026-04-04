@@ -5,8 +5,6 @@ const express = require('express');
 const router = express.Router();
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'meta-llama/llama-3.2-3b-instruct:free';
-
 const SYSTEM_PROMPT = `You are AthleonAI, an elite sports performance analyst and coaching assistant built into the Athleon Global platform. You specialize in:
 
 - Sports performance analysis and improvement strategies
@@ -43,7 +41,7 @@ router.post('/', async (req, res) => {
       'nvidia/nemotron-3-super:free',
       'stepfun/step-3.5-flash:free',
       'nvidia/nemotron-3-nano-30b-a3b:free',
-      'arcee-ai/trinity-mini:free'
+      'arcee-ai/trinity-large-preview:free'
     ];
 
     let reply = 'I could not generate a response. Please try again.';

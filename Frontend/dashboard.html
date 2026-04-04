@@ -87,6 +87,7 @@
         </div>
       </div>
       <div class="topbar-right">
+        <button class="btn-credits-dash" id="buy-credits-btn">Buy Credits</button>
         <button class="notif-btn" id="theme-toggle" title="Toggle Theme">
           ☀️
         </button>
@@ -630,6 +631,50 @@
   <div class="da-modal" id="da-modal">
     <button class="auth-close" id="da-close">&times;</button>
     <div id="da-modal-content"></div>
+  </div>
+
+
+  <!-- ═══════════ CREDITS MODAL ═══════════ -->
+  <div class="credits-overlay" id="credits-overlay"></div>
+  <div class="credits-modal" id="credits-modal">
+    <button class="credits-close" id="credits-close">&times;</button>
+    <h2 class="credits-title">Buy AI Credits</h2>
+    <p class="credits-subtitle">Get more processing power for video analysis</p>
+    
+    <div class="credits-plans">
+      <div class="credits-plan" data-plan="starter">
+        <div class="plan-content">
+          <div class="plan-info">
+            <h3 class="plan-name">Starter</h3>
+            <p class="plan-amount">100 AI Credits</p>
+          </div>
+          <div class="plan-price">$4.99</div>
+        </div>
+      </div>
+      
+      <div class="credits-plan popular" data-plan="pro">
+        <div class="popular-badge">MOST POPULAR</div>
+        <div class="plan-content">
+          <div class="plan-info">
+            <h3 class="plan-name">Pro Athlete</h3>
+            <p class="plan-amount">500 AI Credits</p>
+          </div>
+          <div class="plan-price">$19.99</div>
+        </div>
+      </div>
+      
+      <div class="credits-plan" data-plan="elite">
+        <div class="plan-content">
+          <div class="plan-info">
+            <h3 class="plan-name">Elite</h3>
+            <p class="plan-amount">2000 AI Credits</p>
+          </div>
+          <div class="plan-price">$49.99</div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn-checkout" id="checkout-btn">PROCEED TO CHECKOUT</button>
   </div>
 
   <script src="js/dashboard.js"></script>

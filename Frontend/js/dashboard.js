@@ -869,4 +869,54 @@
     });
   }
 
+  // ─── Credits Modal Logic ───
+  const buyCreditsBtn = document.getElementById('buy-credits-btn');
+  const creditsOverlay = document.getElementById('credits-overlay');
+  const creditsModal = document.getElementById('credits-modal');
+  const creditsClose = document.getElementById('credits-close');
+  const creditsPlans = document.querySelectorAll('.credits-plan');
+  const checkoutBtn = document.getElementById('checkout-btn');
+
+  if (buyCreditsBtn && creditsOverlay && creditsModal) {
+    buyCreditsBtn.addEventListener('click', () => {
+      creditsOverlay.classList.add('active');
+      creditsModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeCredits = () => {
+      creditsOverlay.classList.remove('active');
+      creditsModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    };
+
+    if (creditsClose) creditsClose.addEventListener('click', closeCredits);
+    if (creditsOverlay) creditsOverlay.addEventListener('click', closeCredits);
+
+    creditsPlans.forEach(plan => {
+      plan.addEventListener('click', () => {
+        creditsPlans.forEach(p => p.classList.remove('selected'));
+        plan.classList.add('selected');
+        
+        const planName = plan.querySelector('.plan-name').textContent;
+        const planPrice = plan.querySelector('.plan-price').textContent;
+        if (checkoutBtn) {
+          checkoutBtn.textContent = `PAY ${planPrice} FOR ${planName.toUpperCase()}`;
+        }
+      });
+    });
+
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        const selectedPlan = document.querySelector('.credits-plan.selected');
+        if (selectedPlan) {
+          const name = selectedPlan.querySelector('.plan-name').textContent;
+          alert(`Redirecting to payment gateway for ${name} plan...`);
+        } else {
+          alert('Please select a credit plan first.');
+        }
+      });
+    }
+  }
+
 })();

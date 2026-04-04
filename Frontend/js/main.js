@@ -491,6 +491,59 @@
     }
 
     // ─────────────────────────────────────
+    // CREDITS MODAL CONTROLLER
+    // ─────────────────────────────────────
+    const creditsOverlay = document.getElementById('credits-overlay');
+    const creditsModal = document.getElementById('credits-modal');
+    const creditsClose = document.getElementById('credits-close');
+    const buyCreditsNavBtn = document.getElementById('buy-credits-nav-btn');
+    const creditsPlans = document.querySelectorAll('.credits-plan');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    function openCreditsModal() {
+      creditsOverlay.classList.add('active');
+      creditsModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCreditsModal() {
+      creditsOverlay.classList.remove('active');
+      creditsModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (buyCreditsNavBtn) {
+      buyCreditsNavBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCreditsModal();
+      });
+    }
+
+    if (creditsClose) creditsClose.addEventListener('click', closeCreditsModal);
+    if (creditsOverlay) creditsOverlay.addEventListener('click', closeCreditsModal);
+
+    creditsPlans.forEach(plan => {
+      plan.addEventListener('click', () => {
+        creditsPlans.forEach(p => {
+          p.classList.remove('popular');
+          p.style.borderColor = '#1a1a1a';
+        });
+        plan.classList.add('popular');
+        plan.style.borderColor = '#8b5cf6';
+        
+        const planName = plan.querySelector('.plan-name').textContent;
+        if (checkoutBtn) checkoutBtn.textContent = `PROCEED WITH ${planName.toUpperCase()}`;
+      });
+    });
+
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        alert('Redirecting to secure checkout...');
+        closeCreditsModal();
+      });
+    }
+
+    // ─────────────────────────────────────
     // AUTH MODAL CONTROLLER
     // ─────────────────────────────────────
     const authOverlay = document.getElementById('auth-overlay');

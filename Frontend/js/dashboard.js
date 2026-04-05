@@ -31,9 +31,7 @@
 
   // ─── Configuration ───
   // Set this to your Vercel URL when deploying (e.g., https://your-project.vercel.app)
-  const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-    ? 'http://localhost:3001' 
-    : ''; // Let the user fill this or use a default if known
+  const API_BASE_URL = ''; // Relative paths for Vercel Serverless Functions
 
   // 📝 Helper for relative/absolute API calls
   const getApiUrl = (path) => path.startsWith('http') ? path : `${API_BASE_URL}${path}`;

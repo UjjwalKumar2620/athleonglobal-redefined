@@ -29,6 +29,15 @@
   if (pfName) pfName.value = name;
   if (pfEmail) pfEmail.value = user.email || '';
 
+  // ─── Configuration ───
+  // Set this to your Vercel URL when deploying (e.g., https://your-project.vercel.app)
+  const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:3001' 
+    : ''; // Let the user fill this or use a default if known
+
+  // 📝 Helper for relative/absolute API calls
+  const getApiUrl = (path) => path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
+
   // ─── Page Navigation ───
   const navItems = document.querySelectorAll('.nav-item');
   const pageViews = document.querySelectorAll('.page-view');
@@ -368,7 +377,7 @@
         role: m.role, content: m.content
       }));
 
-      const res = await fetch('http://localhost:3001/api/chat', {
+      const res = await fetch(getApiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: sessionMsgs, sessionId: chatSessionId })
@@ -619,14 +628,29 @@
       formData.append('userId', user.uid || 'user_123');
 
       try {
-        const res = await fetch('http://localhost:3001/api/upload/video', {
-          method: 'POST',
-          body: formData
-        });
-        if (!res.ok) throw new Error('Upload failed');
-        const data = await res.json();
+        // 1. Get Signed URL from Backend
+        const fileName = `${user.uid || 'anon'}/${Date.now()}_${videoFile.name.replace(/\s/g, '_')}`;
         
-        showToast('Upload successful! File: ' + data.path);
+        const signedRes = await fetch(getApiUrl('/api/upload/signed-url'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fileName, bucketName: 'videos' })
+        });
+        
+        if (!signedRes.ok) throw new Error('Could not get signed upload URL');
+        const { signedUrl, path } = await signedRes.json();
+
+        // 2. Upload directly to Supabase via Signed URL
+        showToast('Uploading directly to storage...');
+        const uploadRes = await fetch(signedUrl, {
+          method: 'PUT', // Supabase signed URLs usually use PUT for raw uploads
+          body: videoFile,
+          headers: { 'Content-Type': videoFile.type }
+        });
+
+        if (!uploadRes.ok) throw new Error('Direct upload failed');
+
+        showToast('Upload successful! Path: ' + path);
         
         // Remove file from input
         fileInput.value = '';
@@ -635,7 +659,7 @@
           zone.innerHTML = `
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(77,166,255,0.5)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <p class="upload-title">Drag & drop your video here</p>
-            <p class="upload-sub">MP4, MOV up to 500MB</p>
+            <p class="upload-sub">MP4, MOV up to 500MB (Direct to Storage)</p>
             <button class="dash-btn outlined" id="browse-btn">Browse Files</button>
           `;
           // Reattach listener
@@ -644,7 +668,7 @@
 
       } catch (err) {
         console.error(err);
-        showToast('Backend storage error. Make sure server & Supabase are running.');
+        showToast('Storage error: ' + err.message);
       }
     });
   }

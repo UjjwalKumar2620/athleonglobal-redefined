@@ -12,23 +12,21 @@ const PORT = process.env.PORT || 3001;
 
 // ─── Middleware ───
 const allowedOrigins = [
-  process.env.ALLOWED_ORIGIN || 'http://localhost:8000',
-  'http://localhost:3000',
-  'http://localhost:5000',
+  process.env.ALLOWED_ORIGIN, // Production (GitHub Pages)
   'http://localhost:8000',
-  'http://127.0.0.1:3000',
-  'http://127.0.0.1:5000',
+  'http://localhost:3000',
   'http://127.0.0.1:8000',
-];
+].filter(Boolean);
 
 app.use(cors({
   origin: function(origin, callback) {
-    // Allow requests with no origin (like curl, Postman)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
+    // Allow any localhost or the explicit production origin
+    const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
+    if (isLocalhost || allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-    return callback(new Error('Not allowed by CORS'));
+    return callback(new Error(`Origin ${origin} not allowed by CORS`));
   },
   credentials: true
 }));
@@ -38,9 +36,9 @@ app.use(express.json({ limit: '50mb' }));
 app.use('/api/chat', chatRouter);
 app.use('/api/upload', uploadRouter);
 
-// ─── Health check ───
+// ─── Health check (Vercel compatible) ───
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'Athleon Backend' });
+  res.status(200).json({ status: "OK" });
 });
 
 // ─── 404 ───
@@ -54,8 +52,13 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error', message: err.message });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🚀 Athleon Backend running at http://localhost:${PORT}`);
-  console.log(`   OpenRouter: ${process.env.OPENROUTER_API_KEY ? '✅ Connected' : '❌ Missing key'}`);
-  console.log(`   Supabase:   ${process.env.SUPABASE_URL ? '✅ Connected' : '⚠️  Not configured'}\n`);
-});
+// ─── Export for Vercel / conditional listen for local ───
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Athleon Backend running locally at http://localhost:${PORT}`);
+    console.log(`   OpenRouter: ${process.env.OPENROUTER_API_KEY ? '✅ Connected' : '❌ Missing key'}`);
+    console.log(`   Supabase:   ${process.env.SUPABASE_URL ? '✅ Connected' : '⚠️  Not configured'}\n`);
+  });
+}
+
+module.exports = app;

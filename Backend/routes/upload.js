@@ -6,10 +6,11 @@ const router = express.Router();
 const multer = require('multer');
 const { createClient } = require('@supabase/supabase-js');
 
-// Use memory storage so files go directly to Supabase
+// Use memory storage for small assets (optional) or just move everything to signed URLs
+// Given the 4.5MB limit, signed URLs are safer for everything.
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 500 * 1024 * 1024 } // 500MB
+  limits: { fileSize: 4 * 1024 * 1024 } // 4MB limit to stay under Vercel's 4.5MB
 });
 
 function getSupabase() {
@@ -19,62 +20,51 @@ function getSupabase() {
   return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 }
 
-// POST /api/upload/video
-router.post('/video', upload.single('file'), async (req, res) => {
+// ─── NEW: Signed URL Generator (For Direct Frontend Upload) ───
+// POST /api/upload/signed-url
+router.post('/signed-url', async (req, res) => {
   try {
     const supabase = getSupabase();
     if (!supabase) {
-      return res.status(503).json({ error: 'Storage not configured. Set SUPABASE_URL and SUPABASE_SERVICE_KEY in .env' });
+      return res.status(503).json({ error: 'Storage not configured.' });
     }
 
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file provided' });
+    const { fileName, bucketName = 'videos' } = req.body;
+    if (!fileName) {
+      return res.status(400).json({ error: 'fileName is required' });
     }
 
-    const userId = req.body.userId || 'anonymous';
-    const timestamp = Date.now();
-    const ext = req.file.originalname.split('.').pop();
-    const filename = `${userId}/${timestamp}.${ext}`;
+    console.log(`🔐 Generating signed upload URL for: ${bucketName}/${fileName}`);
 
+    // Create a signed upload URL that expires in 60 seconds
     const { data, error } = await supabase.storage
-      .from('videos')
-      .upload(filename, req.file.buffer, {
-        contentType: req.file.mimetype,
-        upsert: false
-      });
+      .from(bucketName)
+      .createSignedUploadUrl(fileName);
 
     if (error) throw error;
 
-    const { data: urlData } = supabase.storage.from('videos').getPublicUrl(filename);
-
     return res.json({
       success: true,
-      path: filename,
-      publicUrl: urlData.publicUrl,
-      size: req.file.size,
-      originalName: req.file.originalname
+      signedUrl: data.signedUrl,
+      token: data.token,
+      path: fileName
     });
 
   } catch (err) {
-    console.error('Video upload error:', err);
-    return res.status(500).json({ error: 'Upload failed', message: err.message });
+    console.error('Signed URL error:', err);
+    return res.status(500).json({ error: 'Failed to generate signed URL', message: err.message });
   }
 });
 
-// POST /api/upload/asset (for profile photos, certs, achievements)
+// POST /api/upload/asset (Remain for small files < 4MB if needed, but signed URLs are preferred)
 router.post('/asset', upload.single('file'), async (req, res) => {
   try {
     const supabase = getSupabase();
-    if (!supabase) {
-      return res.status(503).json({ error: 'Storage not configured' });
-    }
-
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file provided' });
-    }
+    if (!supabase) return res.status(503).json({ error: 'Storage not configured' });
+    if (!req.file) return res.status(400).json({ error: 'No file provided' });
 
     const userId = req.body.userId || 'anonymous';
-    const type = req.body.type || 'misc'; // 'photo', 'cert', 'achievement'
+    const type = req.body.type || 'misc';
     const timestamp = Date.now();
     const ext = req.file.originalname.split('.').pop();
     const filename = `${userId}/${type}/${timestamp}.${ext}`;
@@ -94,8 +84,7 @@ router.post('/asset', upload.single('file'), async (req, res) => {
       success: true,
       path: filename,
       publicUrl: urlData.publicUrl,
-      type,
-      originalName: req.file.originalname
+      type
     });
 
   } catch (err) {
@@ -103,5 +92,7 @@ router.post('/asset', upload.single('file'), async (req, res) => {
     return res.status(500).json({ error: 'Upload failed', message: err.message });
   }
 });
+
+module.exports = router;
 
 module.exports = router;

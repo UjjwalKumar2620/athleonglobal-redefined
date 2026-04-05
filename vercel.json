@@ -1,8 +1,4 @@
 {
-    "routes": [
-        {
-            "src": "/",
-            "dest": "/Frontend/index.html"
-        }
-    ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }

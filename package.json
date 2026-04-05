@@ -4,8 +4,8 @@
   "description": "Athleon Global — Vercel-compatible Fullstack App",
   "main": "api/index.js",
   "scripts": {
-    "start": "node Backend/server.js",
-    "dev": "nodemon Backend/server.js",
+    "start": "node Backend/index.js",
+    "dev": "node Backend/index.js & node Frontend/server.js",
     "build": "echo 'No build step required'"
   },
   "dependencies": {
